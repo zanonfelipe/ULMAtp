@@ -16,7 +16,7 @@
       CONTINUE !     file so that you don't lose them when installing
       CONTINUE !     a newer version of ATP later
       DATA refnam(1) / 'SAMPLE_MODEL' /  ! Do not modify this line
-      DATA refnam(2) / 'ULM_C_LINE' /
+      DATA refnam(2) / 'ULM_LINE' /
       DATA refnam(3) / ' ' /
       DATA refnam(4) / ' ' /
       DATA refnam(5) / ' ' /
@@ -60,15 +60,15 @@
       CONTINUE !      -------------------------------------------
       ELSE IF ( iname.EQ.2 ) THEN
        IF (iniflg.EQ.1) THEN
-        CALL c_ulm_i(xdata, xin, xout, xvar)
+        CALL ulm_i(xdata, xin, xout, xvar)
        ELSE
-	    CALL c_ulm_m(xdata, xin, xout, xvar)
+        CALL ulm_m(xdata, xin, xout, xvar)
        ENDIF
       CONTINUE !      -------------------------------------------
       ELSE IF ( iname.EQ.3 ) THEN
        IF (iniflg.EQ.1) THEN
        ELSE
-	   ENDIF
+       ENDIF
       CONTINUE !      -------------------------------------------
       ELSE IF ( iname.EQ.4 ) THEN
        IF (iniflg.EQ.1) THEN
