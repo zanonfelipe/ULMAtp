@@ -1,0 +1,46 @@
+# --------------------------------------------------------
+#      By Osis E. S. Leal - UTFPR 
+#         Alberto R. De Conti - UFMG
+#         Felipe O. S. Zanon - UFMG/PPGEE
+# Federal University of Technology - Parana (UTFPR)
+# Federal University of Minas Gerais - (UFMG)
+#      Version 3.1 July 28, 2023.
+# --------------------------------------------------------
+CC=gcc
+FOR=g77
+GWDIR=C:\ATP\atpmingw\make
+GWDIRL=C:\ATP\atpmingw\make\MinGW\lib\gcc\mingw32\5.1.0
+GWMY= C:\ATP\mytpbig
+OBJECTS =dimdef.o \
+	newmods.o \
+	comtac.o \
+	fgnmod.o \
+	usernl.o \
+	analyt.o \
+	devt69.o \
+	usrfun.o \
+	hopcod.o \
+	user10.o \
+	$(GWDIR)\ulmatp.o\
+	$(GWDIR)\ulmmsg.o
+
+INSFILE	= blkcom.ins comta1.ins \
+	comta2.ins comta3.ins \
+	dekspy.ins tacsar.ins \
+	space2.ins
+
+CFLAGS = -DUNDERSCORE -O2
+FFLAGS = -O2
+IMAGE= $(GWMY)\mytpbig.exe
+
+LIBRARY = $(GWDIR)\tpbig.a $(GWDIR)\dismg7.a -lgdi32 $(GWDIRL)\libgcc.a
+
+all:	$(DLL_NAME) $(IMAGE)
+
+.f.o:
+	$(FOR) -c $(FFLAGS) $<
+.c.o:
+	$(CC) -c $(CFLAGS) $<
+
+$(IMAGE) : $(OBJECTS) $(INSFILE)
+	$(FOR) -s -o $(IMAGE) $(OBJECTS) $(LIBRARY)
