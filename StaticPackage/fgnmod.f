@@ -61,6 +61,7 @@
       ELSE IF ( iname.EQ.2 ) THEN
        IF (iniflg.EQ.1) THEN
         CALL ulm_i(xdata, xin, xout, xvar)
+        CALL ulmerror(xdata, xvar)
        ELSE
         CALL ulm_m(xdata, xin, xout, xvar)
        ENDIF
